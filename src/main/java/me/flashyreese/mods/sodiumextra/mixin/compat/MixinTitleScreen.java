@@ -18,11 +18,11 @@ public abstract class MixinTitleScreen extends Screen {
         super(title);
     }
 
-    /*@Inject(method = "init", at = @At(value = "RETURN")) TODO
+    @Inject(method = "init", at = @At(value = "RETURN")) TODO
     private void postInit(CallbackInfo ci) {
-        if (!ModList.get().isLoaded("reeses_sodium_options") && !SodiumExtraClientMod.options().notificationSettings.hideRSORecommendation && !SodiumExtraClientMod.options().hasSuggestedRSO()) {
+        if (!ModList.get().isLoaded("textrues_embeddium_options") && !SodiumExtraClientMod.options().notificationSettings.hideRSORecommendation && !SodiumExtraClientMod.options().hasSuggestedRSO()) {
             this.client.setScreen(new SuggestRSOScreen(this));
             SodiumExtraClientMod.options().setSuggestedRSO(true);
         }
-    }*/
+    }
 }
