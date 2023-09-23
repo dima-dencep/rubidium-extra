@@ -28,13 +28,13 @@ public class MixinWindow {
     @Shadow
     private int framebufferHeight;
 
-    @Redirect(at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwDefaultWindowHints()V"), method = "<init>", remap = false)
-    private void onDefaultWindowHints() {
-        GLFW.glfwDefaultWindowHints();
-
+    @Redirect(at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwWindowHint(II)V", ordinal = 0), method = "<init>", remap = false)
+    private void onDefaultWindowHints(int hint, int value) {
         if (MinecraftClient.IS_SYSTEM_MAC && SodiumExtraClientMod.options().extraSettings.reduceResolutionOnMac) {
             GLFW.glfwWindowHint(GLFW.GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW.GLFW_FALSE);
         }
+
+        GLFW.glfwWindowHint(hint, value);
     }
 
     @Inject(at = @At(value = "RETURN"), method = "updateFramebufferSize")
