@@ -1,14 +1,13 @@
 package me.flashyreese.mods.sodiumextra.client.gui;
 
-import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import me.flashyreese.mods.sodiumextra.client.gui.options.control.SliderControlExtended;
+import me.flashyreese.mods.sodiumextra.client.gui.options.storage.SodiumExtraOptions;
 import me.flashyreese.mods.sodiumextra.common.util.ControlValueFormatterExtended;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.util.VideoMode;
 import net.minecraft.client.util.Window;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import org.embeddedt.embeddium.api.options.control.ControlValueFormatter;
 import org.embeddedt.embeddium.api.options.control.CyclingControl;
 import org.embeddedt.embeddium.api.options.control.SliderControl;
@@ -26,7 +25,7 @@ public class EmbeddiumExtendedOptions {
 
     public static final Option<?> ADAPTIVE_VSYNC = OptionImpl.createBuilder(SodiumExtraGameOptions.VerticalSyncOption.class, SodiumExtraGameOptionPages.sodiumExtraOpts)
             .setName(Text.translatable("options.vsync"))
-            .setId(Identifier.of(SodiumExtraClientMod.MOD_ID, "vsync"))
+            .setId(SodiumExtraOptions.Option.ADAPTIVE_VSYNC)
             .setTooltip(Text.literal(Text.translatable("sodium.options.v_sync.tooltip").getString() + "\n- " + Text.translatable("sodium-extra.option.use_adaptive_sync.name").getString() + ": " + Text.translatable("sodium-extra.option.use_adaptive_sync.tooltip").getString()))
             .setControl((opt) -> new CyclingControl<>(opt, SodiumExtraGameOptions.VerticalSyncOption.class,
                     SodiumExtraGameOptions.VerticalSyncOption.getAvailableOptions()))
@@ -59,8 +58,10 @@ public class EmbeddiumExtendedOptions {
             .build();
 
     public static final OptionGroup EFFECTS_GROUP = OptionGroup.createBuilder()
+            .setId(SodiumExtraOptions.Group.EFFECTS)
             .add(OptionImpl.createBuilder(int.class, vanillaOpts)
                     .setName(Text.translatable("options.screenEffectScale"))
+                    .setId(SodiumExtraOptions.Option.SCREEN_EFFECT_SCALE)
                     .setTooltip(Text.translatable("options.screenEffectScale.tooltip"))
                     .setControl(option -> new SliderControl(option, 0, 100, 1, ControlValueFormatter.percentage()))
                     .setBinding((opts, value) -> opts.getDistortionEffectScale().setValue((double) value / 100.0F), (opts) -> Math.toIntExact(Math.round(opts.getDistortionEffectScale().getValue() * 100.0F)))
@@ -69,6 +70,7 @@ public class EmbeddiumExtendedOptions {
             )
             .add(OptionImpl.createBuilder(int.class, vanillaOpts)
                     .setName(Text.translatable("options.fovEffectScale"))
+                    .setId(SodiumExtraOptions.Option.FOV_EFFECT_SCALE)
                     .setTooltip(Text.translatable("options.fovEffectScale.tooltip"))
                     .setControl(option -> new SliderControl(option, 0, 100, 1, ControlValueFormatter.percentage()))
                     .setBinding((opts, value) -> opts.getFovEffectScale().setValue(Math.sqrt(value / 100.0F)), (opts) -> (int) Math.round(Math.pow(opts.getFovEffectScale().getValue(), 2.0D) * 100.0F))
@@ -78,8 +80,10 @@ public class EmbeddiumExtendedOptions {
             .build();
 
     public static final OptionGroup RESOLUTION_GROUP = OptionGroup.createBuilder()
+            .setId(SodiumExtraOptions.Group.RESOLUTIONS)
             .add(OptionImpl.createBuilder(int.class, vanillaOpts)
                     .setName(Text.translatable("options.fullscreen.resolution"))
+                    .setId(SodiumExtraOptions.Option.RESOLUTION)
                     .setTooltip(Text.translatable("sodium-extra.option.resolution.tooltip"))
                     .setControl(option -> new SliderControlExtended(option, 0, window().getMonitor() != null ? window().getMonitor().getVideoModeCount() : 0, 1, ControlValueFormatterExtended.resolution(), false))
                     .setBinding((options, value) -> {

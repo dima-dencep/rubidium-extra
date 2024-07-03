@@ -15,6 +15,8 @@ import org.embeddedt.embeddium.api.OptionGroupConstructionEvent;
 import org.embeddedt.embeddium.api.OptionPageConstructionEvent;
 import org.embeddedt.embeddium.api.options.OptionIdentifier;
 import org.embeddedt.embeddium.api.options.structure.StandardOptions;
+import org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter;
+import org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent;
 
 @Mod(value = SodiumExtraClientMod.MOD_ID, dist = Dist.CLIENT)
 public class SodiumExtraClientMod {
@@ -110,6 +112,10 @@ public class SodiumExtraClientMod {
                 }
                 return EmbeddiumExtendedOptions.ADAPTIVE_VSYNC;
             });
+        });
+
+        RenderSectionDistanceFilterEvent.BUS.addListener(event -> {
+            event.setFilter(ExtraRenderSectionDistanceFilter.INSTANCE);
         });
     }
 

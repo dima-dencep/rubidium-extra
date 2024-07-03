@@ -3,6 +3,7 @@ package me.flashyreese.mods.sodiumextra.client.gui;
 import com.google.common.collect.ImmutableList;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import me.flashyreese.mods.sodiumextra.client.gui.options.control.SliderControlExtended;
+import me.flashyreese.mods.sodiumextra.client.gui.options.storage.SodiumExtraOptions;
 import me.flashyreese.mods.sodiumextra.client.gui.options.storage.SodiumExtraOptionsStorage;
 import me.flashyreese.mods.sodiumextra.common.util.ControlValueFormatterExtended;
 import org.embeddedt.embeddium.api.options.structure.OptionFlag;
@@ -37,7 +38,9 @@ public class SodiumExtraGameOptionPages {
     public static OptionPage animation() {
         List<OptionGroup> groups = new ArrayList<>();
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.ANIMATIONS_ALL)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.ANIMATIONS_ALL)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.animation").isEnabled())
                         .setName(parseVanillaString("gui.socialInteractions.tab_all"))
                         .setTooltip(Text.translatable("sodium-extra.option.animations_all.tooltip"))
@@ -49,7 +52,9 @@ public class SodiumExtraGameOptionPages {
                 .build());
 
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.BLOCK_ANIMATIONS)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.ANIMATIONS_WATER)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.animation").isEnabled())
                         .setName(parseVanillaString("block.minecraft.water"))
                         .setTooltip(Text.translatable("sodium-extra.option.animate_water.tooltip"))
@@ -60,6 +65,7 @@ public class SodiumExtraGameOptionPages {
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.animation").isEnabled())
+                        .setId(SodiumExtraOptions.Option.ANIMATIONS_LAVA)
                         .setName(parseVanillaString("block.minecraft.lava"))
                         .setTooltip(Text.translatable("sodium-extra.option.animate_lava.tooltip"))
                         .setControl(TickBoxControl::new)
@@ -69,6 +75,7 @@ public class SodiumExtraGameOptionPages {
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.animation").isEnabled())
+                        .setId(SodiumExtraOptions.Option.ANIMATIONS_FIRE)
                         .setName(parseVanillaString("block.minecraft.fire"))
                         .setTooltip(Text.translatable("sodium-extra.option.animate_fire.tooltip"))
                         .setControl(TickBoxControl::new)
@@ -78,6 +85,7 @@ public class SodiumExtraGameOptionPages {
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.animation").isEnabled())
+                        .setId(SodiumExtraOptions.Option.ANIMATIONS_NETHER_PORTAL)
                         .setName(parseVanillaString("block.minecraft.nether_portal"))
                         .setTooltip(Text.translatable("sodium-extra.option.animate_portal.tooltip"))
                         .setControl(TickBoxControl::new)
@@ -87,6 +95,7 @@ public class SodiumExtraGameOptionPages {
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.animation").isEnabled())
+                        .setId(SodiumExtraOptions.Option.ANIMATIONS_BLOCK)
                         .setName(Text.translatable("sodium-extra.option.block_animations"))
                         .setTooltip(Text.translatable("sodium-extra.option.block_animations.tooltip"))
                         .setControl(TickBoxControl::new)
@@ -96,6 +105,7 @@ public class SodiumExtraGameOptionPages {
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.animation").isEnabled())
+                        .setId(SodiumExtraOptions.Option.ANIMATIONS_SCULK_SENSOR)
                         .setName(parseVanillaString("block.minecraft.sculk_sensor"))
                         .setTooltip(Text.translatable("sodium-extra.option.animate_sculk_sensor.tooltip"))
                         .setControl(TickBoxControl::new)
@@ -104,13 +114,15 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .build());
-        return new OptionPage(SodiumExtraClientMod.optionIdentifier("animations"), Text.translatable("sodium-extra.option.animations"), ImmutableList.copyOf(groups));
+        return new OptionPage(SodiumExtraOptions.Pages.ANIMATIONS, Text.translatable("sodium-extra.option.animations"), ImmutableList.copyOf(groups));
     }
 
     public static OptionPage particle() {
         List<OptionGroup> groups = new ArrayList<>();
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.PARTICLES_ALL)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.PARTICLES_ALL)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.particle").isEnabled())
                         .setName(parseVanillaString("gui.socialInteractions.tab_all"))
                         .setTooltip(Text.translatable("sodium-extra.option.particles_all.tooltip"))
@@ -121,7 +133,9 @@ public class SodiumExtraGameOptionPages {
                 .build());
 
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.PARTICLES_BLOCK)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.PARTICLES_SPLASH)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.particle").isEnabled())
                         .setName(parseVanillaString("subtitles.entity.generic.splash"))
                         .setTooltip(Text.translatable("sodium-extra.option.rain_splash.tooltip"))
@@ -130,6 +144,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.PARTICLES_BREAK)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.particle").isEnabled())
                         .setName(parseVanillaString("subtitles.block.generic.break"))
                         .setTooltip(Text.translatable("sodium-extra.option.block_break.tooltip"))
@@ -138,6 +153,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.PARTICLES_HIT)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.particle").isEnabled())
                         .setName(parseVanillaString("subtitles.block.generic.hit"))
                         .setTooltip(Text.translatable("sodium-extra.option.block_breaking.tooltip"))
@@ -151,6 +167,7 @@ public class SodiumExtraGameOptionPages {
                 .collect(Collectors.groupingBy(Identifier::getNamespace));
         otherParticles.forEach((namespace, identifiers) -> groups.add(identifiers.stream()
                 .map(identifier -> OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(Identifier.of(identifier.getNamespace(), "particles_type"))
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.particle").isEnabled())
                         .setName(translatableName(identifier, "particles"))
                         .setTooltip(translatableTooltip(identifier, "particles"))
@@ -164,16 +181,20 @@ public class SodiumExtraGameOptionPages {
                         OptionGroup.Builder::add,
                         (b1, b2) -> {
                         }
-                ).build()
+                )
+                .setId(SodiumExtraOptions.Option.PARTICLES_TYPES)
+                .build()
         ));
 
-        return new OptionPage(SodiumExtraClientMod.optionIdentifier("particles"), parseVanillaString("options.particles"), ImmutableList.copyOf(groups));
+        return new OptionPage(SodiumExtraOptions.Pages.PARTICLES, parseVanillaString("options.particles"), ImmutableList.copyOf(groups));
     }
 
     public static OptionPage detail() {
         List<OptionGroup> groups = new ArrayList<>();
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.DETAILS_DEFAULT)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.DETAILS_SKY)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.sky").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.sky"))
                         .setTooltip(Text.translatable("sodium-extra.option.sky.tooltip"))
@@ -182,6 +203,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.DETAILS_STARS)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.stars").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.stars"))
                         .setTooltip(Text.translatable("sodium-extra.option.stars.tooltip"))
@@ -190,6 +212,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.DETAILS_SUN_MOON)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.sun_moon").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.sun_moon"))
                         .setTooltip(Text.translatable("sodium-extra.option.sun_moon.tooltip"))
@@ -199,6 +222,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.DETAILS_WEATHER)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.particle").isEnabled())
                         .setName(parseVanillaString("soundCategory.weather"))
                         .setTooltip(Text.translatable("sodium-extra.option.rain_snow.tooltip"))
@@ -207,6 +231,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.DETAILS_BIOME_COLORS)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.biome_colors").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.biome_colors"))
                         .setTooltip(Text.translatable("sodium-extra.option.biome_colors.tooltip"))
@@ -216,6 +241,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.DETAILS_SKY_COLORS)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.sky_colors").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.sky_colors"))
                         .setTooltip(Text.translatable("sodium-extra.option.sky_colors.tooltip"))
@@ -225,14 +251,16 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .build());
-        return new OptionPage(SodiumExtraClientMod.optionIdentifier("details"), Text.translatable("sodium-extra.option.details"), ImmutableList.copyOf(groups));
+        return new OptionPage(SodiumExtraOptions.Pages.DETAILS, Text.translatable("sodium-extra.option.details"), ImmutableList.copyOf(groups));
     }
 
     public static OptionPage render() {
         List<OptionGroup> groups = new ArrayList<>();
 
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.RENDER_FOG)
                 .add(OptionImpl.createBuilder(SodiumExtraGameOptions.RenderSettings.FogType.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_FOG_TYPE)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.fog").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.fog_type"))
                         .setTooltip(Text.translatable("sodium-extra.option.fog_type.tooltip"))
@@ -241,6 +269,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_MULTI_DIMENSION_FOG)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.fog").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.multi_dimension_fog"))
                         .setTooltip(Text.translatable("sodium-extra.option.multi_dimension_fog.tooltip"))
@@ -249,6 +278,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(int.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_FOG_FALLOUT)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.fog_falloff").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.fog_start"))
                         .setTooltip(Text.translatable("sodium-extra.option.fog_start.tooltip"))
@@ -265,6 +295,7 @@ public class SodiumExtraGameOptionPages {
                     .forEach(dim -> SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.put(dim.getValue(), 0));
             groups.add(SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.keySet().stream()
                     .map(identifier -> OptionImpl.createBuilder(int.class, sodiumExtraOpts)
+                            .setId(Identifier.of(identifier.getNamespace(), "render_dimension_fog"))
                             .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.fog").isEnabled())
                             .setName(Text.translatable("sodium-extra.option.fog", translatableName(identifier, "dimensions").getString()))
                             .setTooltip(Text.translatable("sodium-extra.option.fog.tooltip"))
@@ -277,11 +308,15 @@ public class SodiumExtraGameOptionPages {
                             OptionGroup.Builder::add,
                             (b1, b2) -> {
                             }
-                    ).build()
+                    )
+                    .setId(SodiumExtraOptions.Option.RENDER_FOG_DIMENSION_TYPES)
+                    .build()
             );
         } else {
             groups.add(OptionGroup.createBuilder()
+                    .setId(SodiumExtraOptions.Group.RENDER_SINGLE_FOG)
                     .add(OptionImpl.createBuilder(int.class, sodiumExtraOpts)
+                            .setId(SodiumExtraOptions.Option.RENDER_SINGLE_FOG)
                             .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.fog").isEnabled())
                             .setName(Text.translatable("sodium-extra.option.single_fog"))
                             .setTooltip(Text.translatable("sodium-extra.option.single_fog.tooltip"))
@@ -293,7 +328,9 @@ public class SodiumExtraGameOptionPages {
         }
 
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.RENDER_LIGHT)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_LIGHT_UPDATES)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.light_updates").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.light_updates"))
                         .setTooltip(Text.translatable("sodium-extra.option.light_updates.tooltip"))
@@ -303,7 +340,9 @@ public class SodiumExtraGameOptionPages {
                 )
                 .build());
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.RENDER_ENTITY)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_ITEM_FRAME)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.render.entity").isEnabled())
                         .setName(parseVanillaString("entity.minecraft.item_frame"))
                         .setTooltip(Text.translatable("sodium-extra.option.item_frames.tooltip"))
@@ -312,6 +351,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_ARMOR_STAND)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.render.entity").isEnabled())
                         .setName(parseVanillaString("entity.minecraft.armor_stand"))
                         .setTooltip(Text.translatable("sodium-extra.option.armor_stands.tooltip"))
@@ -320,6 +360,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_PAINTING)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.render.entity").isEnabled())
                         .setName(parseVanillaString("entity.minecraft.painting"))
                         .setTooltip(Text.translatable("sodium-extra.option.paintings.tooltip"))
@@ -330,7 +371,9 @@ public class SodiumExtraGameOptionPages {
                 )
                 .build());
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.RENDER_BLOCK_ENTITY)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_RENDER_BEACON_BEAM)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.render.block.entity").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.beacon_beam"))
                         .setTooltip(Text.translatable("sodium-extra.option.beacon_beam.tooltip"))
@@ -339,6 +382,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_LIMIT_BEACON_BEAM_HEIGHT)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.render.block.entity").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.limit_beacon_beam_height"))
                         .setTooltip(Text.translatable("sodium-extra.option.limit_beacon_beam_height.tooltip"))
@@ -347,6 +391,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_ENCHANTING_TABLE_BOOK)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.render.block.entity").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.enchanting_table_book"))
                         .setTooltip(Text.translatable("sodium-extra.option.enchanting_table_book.tooltip"))
@@ -355,6 +400,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_PISTON)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.render.block.entity").isEnabled())
                         .setName(parseVanillaString("block.minecraft.piston"))
                         .setTooltip(Text.translatable("sodium-extra.option.piston.tooltip"))
@@ -364,7 +410,9 @@ public class SodiumExtraGameOptionPages {
                 )
                 .build());
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.RENDER_TAG_ENTITY)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_ITEM_FRAME_NAME_TAG)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.render.entity").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.item_frame_name_tag"))
                         .setTooltip(Text.translatable("sodium-extra.option.item_frame_name_tag.tooltip"))
@@ -373,6 +421,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.RENDER_PLAYER_NAME_TAG)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.render.entity").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.player_name_tag"))
                         .setTooltip(Text.translatable("sodium-extra.option.player_name_tag.tooltip"))
@@ -381,13 +430,15 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .build());
-        return new OptionPage(SodiumExtraClientMod.optionIdentifier("render"), Text.translatable("sodium-extra.option.render"), ImmutableList.copyOf(groups));
+        return new OptionPage(SodiumExtraOptions.Pages.RENDER, Text.translatable("sodium-extra.option.render"), ImmutableList.copyOf(groups));
     }
 
     public static OptionPage extra() {
         List<OptionGroup> groups = new ArrayList<>();
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.EXTRA_MAC_OS)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_REDUCE_RESOLUTION_ON_MAC)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.reduce_resolution_on_mac").isEnabled() && MinecraftClient.IS_SYSTEM_MAC)
                         .setName(Text.translatable("sodium-extra.option.reduce_resolution_on_mac"))
                         .setTooltip(Text.translatable("sodium-extra.option.reduce_resolution_on_mac.tooltip"))
@@ -398,7 +449,9 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 ).build());
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.EXTRA_OVERLAY)
                 .add(OptionImpl.createBuilder(SodiumExtraGameOptions.OverlayCorner.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_OVERLAY_CORNER)
                         .setName(Text.translatable("sodium-extra.option.overlay_corner"))
                         .setTooltip(Text.translatable("sodium-extra.option.overlay_corner.tooltip"))
                         .setControl(option -> new CyclingControl<>(option, SodiumExtraGameOptions.OverlayCorner.class))
@@ -406,6 +459,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(SodiumExtraGameOptions.TextContrast.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_TEXT_CONTRAST)
                         .setName(Text.translatable("sodium-extra.option.text_contrast"))
                         .setTooltip(Text.translatable("sodium-extra.option.text_contrast.tooltip"))
                         .setControl(option -> new CyclingControl<>(option, SodiumExtraGameOptions.TextContrast.class))
@@ -413,6 +467,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_SHOW_FPS)
                         .setName(Text.translatable("sodium-extra.option.show_fps"))
                         .setTooltip(Text.translatable("sodium-extra.option.show_fps.tooltip"))
                         .setControl(TickBoxControl::new)
@@ -420,6 +475,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_SHOW_FPS_EXTENDED)
                         .setName(Text.translatable("sodium-extra.option.show_fps_extended"))
                         .setTooltip(Text.translatable("sodium-extra.option.show_fps_extended.tooltip"))
                         .setControl(TickBoxControl::new)
@@ -427,6 +483,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_SHOW_COORDINATES)
                         .setName(Text.translatable("sodium-extra.option.show_coordinates"))
                         .setTooltip(Text.translatable("sodium-extra.option.show_coordinates.tooltip"))
                         .setControl(TickBoxControl::new)
@@ -434,6 +491,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(int.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_CLOUD_HEIGHT)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.cloud").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.cloud_height"))
                         .setTooltip(Text.translatable("sodium-extra.option.cloud_height.tooltip"))
@@ -442,7 +500,9 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(int.class, sodiumExtraOpts)
-                        .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.sodium.cloud").isEnabled())
+                        .setId(SodiumExtraOptions.Option.EXTRA_CLOUD_DISTANCE)
+                        //.setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.sodium.cloud").isEnabled())
+                        .setEnabled(false)
                         .setName(Text.translatable("sodium-extra.option.cloud_distance"))
                         .setTooltip(Text.translatable("sodium-extra.option.cloud_distance.tooltip"))
                         .setControl(option -> new SliderControl(option, 100, 300, 10, ControlValueFormatter.percentage()))
@@ -451,7 +511,9 @@ public class SodiumExtraGameOptionPages {
                 )
                 .build());
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.EXTRA_ADVANCED_ITEM_TOOLTIPS)
                 .add(OptionImpl.createBuilder(boolean.class, vanillaOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_ADVANCED_ITEM_TOOLTIPS)
                         .setName(Text.translatable("sodium-extra.option.advanced_item_tooltips"))
                         .setTooltip(Text.translatable("sodium-extra.option.advanced_item_tooltips.tooltip"))
                         .setControl(TickBoxControl::new)
@@ -460,7 +522,9 @@ public class SodiumExtraGameOptionPages {
                 )
                 .build());
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.EXTRA_TOASTS)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_TOASTS)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.toasts").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.toasts"))
                         .setTooltip(Text.translatable("sodium-extra.option.toasts.tooltip"))
@@ -468,6 +532,7 @@ public class SodiumExtraGameOptionPages {
                         .setBinding((options, value) -> options.extraSettings.toasts = value, options -> options.extraSettings.toasts)
                         .build())
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_ADVANCEMENT_TOAST)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.toasts").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.advancement_toast"))
                         .setTooltip(Text.translatable("sodium-extra.option.advancement_toast.tooltip"))
@@ -476,6 +541,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_RECIPE_TOAST)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.toasts").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.recipe_toast"))
                         .setTooltip(Text.translatable("sodium-extra.option.recipe_toast.tooltip"))
@@ -484,6 +550,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_SYSTEM_TOAST)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.toasts").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.system_toast"))
                         .setTooltip(Text.translatable("sodium-extra.option.system_toast.tooltip"))
@@ -492,6 +559,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_TUTORIAL_TOAST)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.toasts").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.tutorial_toast"))
                         .setTooltip(Text.translatable("sodium-extra.option.tutorial_toast.tooltip"))
@@ -501,7 +569,9 @@ public class SodiumExtraGameOptionPages {
                 )
                 .build());
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.EXTRA_SHADERS)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_INSTANT_SNEAK)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.instant_sneak").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.instant_sneak"))
                         .setTooltip(Text.translatable("sodium-extra.option.instant_sneak.tooltip"))
@@ -510,6 +580,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_PREVENT_SHADERS)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.prevent_shaders").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.prevent_shaders"))
                         .setTooltip(Text.translatable("sodium-extra.option.prevent_shaders.tooltip"))
@@ -520,7 +591,9 @@ public class SodiumExtraGameOptionPages {
                 )
                 .build());
         groups.add(OptionGroup.createBuilder()
+                .setId(SodiumExtraOptions.Group.EXTRA_DEBUG)
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_STEADY_DEBUG_HUD)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.steady_debug_hud").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.steady_debug_hud"))
                         .setTooltip(Text.translatable("sodium-extra.option.steady_debug_hud.tooltip"))
@@ -529,6 +602,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .add(OptionImpl.createBuilder(int.class, sodiumExtraOpts)
+                        .setId(SodiumExtraOptions.Option.EXTRA_STEADY_DEBUG_HUD_REFRESH_INTERVAL)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.steady_debug_hud").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.steady_debug_hud_refresh_interval"))
                         .setTooltip(Text.translatable("sodium-extra.option.steady_debug_hud_refresh_interval.tooltip"))
@@ -538,7 +612,7 @@ public class SodiumExtraGameOptionPages {
                 )
                 .build());
 
-        return new OptionPage(SodiumExtraClientMod.optionIdentifier("extras"), Text.translatable("sodium-extra.option.extras"), ImmutableList.copyOf(groups));
+        return new OptionPage(SodiumExtraOptions.Pages.EXTRAS, Text.translatable("sodium-extra.option.extras"), ImmutableList.copyOf(groups));
     }
 
     private static Text translatableName(Identifier identifier, String category) {
