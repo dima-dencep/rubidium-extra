@@ -35,6 +35,7 @@
     "render.entity.MixinPaintingEntityRenderer",
     "sky.MixinWorldRenderer",
     "sky_colors.MixinBiome",
+    "sodium.cloud.MixinCloudRenderer",
     "stars.MixinWorldRenderer",
     "steady_debug_hud.MixinDebugHud",
     "sun_moon.MixinWorldRenderer",
