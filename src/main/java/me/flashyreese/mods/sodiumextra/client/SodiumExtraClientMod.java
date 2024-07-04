@@ -14,7 +14,6 @@ import org.apache.logging.log4j.LogManager;
 import org.embeddedt.embeddium.api.OptionGUIConstructionEvent;
 import org.embeddedt.embeddium.api.OptionGroupConstructionEvent;
 import org.embeddedt.embeddium.api.OptionPageConstructionEvent;
-import org.embeddedt.embeddium.api.options.OptionIdentifier;
 import org.embeddedt.embeddium.api.options.structure.StandardOptions;
 import org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent;
 
@@ -117,9 +116,5 @@ public class SodiumExtraClientMod {
         RenderSectionDistanceFilterEvent.BUS.addListener(event -> {
             event.setFilter(ExtraRenderSectionDistanceFilter.INSTANCE);
         });
-    }
-
-    public static OptionIdentifier<Void> optionIdentifier(String path) {
-        return OptionIdentifier.create(MOD_ID, path);
     }
 }

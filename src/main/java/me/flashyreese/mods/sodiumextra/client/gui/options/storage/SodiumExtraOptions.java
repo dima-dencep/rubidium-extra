@@ -31,11 +31,15 @@ public class SodiumExtraOptions {
     }
 
     public static class Pages {
-        public static final OptionIdentifier<Void> ANIMATIONS = SodiumExtraClientMod.optionIdentifier("animations");
-        public static final OptionIdentifier<Void> PARTICLES = SodiumExtraClientMod.optionIdentifier("particles");
-        public static final OptionIdentifier<Void> DETAILS = SodiumExtraClientMod.optionIdentifier("details");
-        public static final OptionIdentifier<Void> RENDER = SodiumExtraClientMod.optionIdentifier("render");
-        public static final OptionIdentifier<Void> EXTRAS = SodiumExtraClientMod.optionIdentifier("extras");
+        public static final OptionIdentifier<Void> ANIMATIONS = optionIdentifier("animations");
+        public static final OptionIdentifier<Void> PARTICLES = optionIdentifier("particles");
+        public static final OptionIdentifier<Void> DETAILS = optionIdentifier("details");
+        public static final OptionIdentifier<Void> RENDER = optionIdentifier("render");
+        public static final OptionIdentifier<Void> EXTRAS = optionIdentifier("extras");
+
+        private static OptionIdentifier<Void> optionIdentifier(String path) {
+            return OptionIdentifier.create(SodiumExtraClientMod.MOD_ID, path);
+        }
     }
 
     public static class Option {
