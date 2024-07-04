@@ -1,9 +1,10 @@
 package me.flashyreese.mods.sodiumextra.client;
 
+import static me.flashyreese.mods.sodiumextra.mixin.SodiumExtraMixinConfigPlugin.EMBEDDIUM_HACKED;
+
 import me.flashyreese.mods.sodiumextra.client.gui.EmbeddiumExtendedOptions;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptionPages;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
-import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraHud;
 import net.caffeinemc.caffeineconfig.CaffeineConfig;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.Mod;
@@ -15,7 +16,6 @@ import org.embeddedt.embeddium.api.OptionGroupConstructionEvent;
 import org.embeddedt.embeddium.api.OptionPageConstructionEvent;
 import org.embeddedt.embeddium.api.options.OptionIdentifier;
 import org.embeddedt.embeddium.api.options.structure.StandardOptions;
-import org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter;
 import org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent;
 
 @Mod(value = SodiumExtraClientMod.MOD_ID, dist = Dist.CLIENT)
@@ -61,12 +61,12 @@ public class SodiumExtraClientMod {
                     .addMixinOption("sky", true)
                     .addMixinOption("sky_colors", true)
                     .addMixinOption("sodium", true)
-                    .addMixinOption("sodium.accessibility", true)
-                    .addMixinOption("sodium.fog", true)
-                    .addMixinOption("sodium.cloud", true)
-                    .addMixinOption("sodium.resolution", true)
-                    .addMixinOption("sodium.scrollable_page", true)
-                    .addMixinOption("sodium.vsync", true)
+                    //.addMixinOption("sodium.accessibility", true) in embeddium
+                    // .addMixinOption("sodium.fog", true) via api
+                    .addMixinOption("sodium.cloud", EMBEDDIUM_HACKED)
+                    //.addMixinOption("sodium.resolution", true) via api
+                    //.addMixinOption("sodium.scrollable_page", true) in embeddium
+                    //.addMixinOption("sodium.vsync", true) via api
                     .addMixinOption("stars", true)
                     .addMixinOption("steady_debug_hud", true)
                     .addMixinOption("sun_moon", true)
