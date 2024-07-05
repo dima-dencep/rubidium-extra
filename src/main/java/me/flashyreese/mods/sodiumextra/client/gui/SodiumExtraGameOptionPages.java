@@ -501,7 +501,6 @@ public class SodiumExtraGameOptionPages {
                 )
                 .add(OptionImpl.createBuilder(int.class, sodiumExtraOpts)
                         .setId(SodiumExtraOptions.Option.EXTRA_CLOUD_DISTANCE)
-                        .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.sodium.cloud").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.cloud_distance"))
                         .setTooltip(Text.translatable("sodium-extra.option.cloud_distance.tooltip"))
                         .setControl(option -> new SliderControl(option, 100, 300, 10, ControlValueFormatter.percentage()))
