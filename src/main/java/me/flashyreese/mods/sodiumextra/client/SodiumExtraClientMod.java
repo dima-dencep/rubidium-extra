@@ -61,7 +61,7 @@ public class SodiumExtraClientMod {
                     .addMixinOption("sodium", true)
                     //.addMixinOption("sodium.accessibility", true) in embeddium
                     // .addMixinOption("sodium.fog", true) via api
-                    .addMixinOption("sodium.cloud", true)
+                    //.addMixinOption("sodium.cloud", true) via api
                     //.addMixinOption("sodium.resolution", true) via api
                     //.addMixinOption("sodium.scrollable_page", true) in embeddium
                     //.addMixinOption("sodium.vsync", true) via api
