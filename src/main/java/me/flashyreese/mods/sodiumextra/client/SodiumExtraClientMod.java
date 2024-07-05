@@ -1,7 +1,5 @@
 package me.flashyreese.mods.sodiumextra.client;
 
-import static me.flashyreese.mods.sodiumextra.mixin.SodiumExtraMixinConfigPlugin.EMBEDDIUM_HACKED;
-
 import me.flashyreese.mods.sodiumextra.client.gui.EmbeddiumExtendedOptions;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptionPages;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
@@ -16,6 +14,7 @@ import org.embeddedt.embeddium.api.OptionGroupConstructionEvent;
 import org.embeddedt.embeddium.api.OptionPageConstructionEvent;
 import org.embeddedt.embeddium.api.options.structure.StandardOptions;
 import org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent;
+import org.embeddedt.embeddium.api.render.clouds.ModifyCloudRenderingEvent;
 
 @Mod(value = SodiumExtraClientMod.MOD_ID, dist = Dist.CLIENT)
 public class SodiumExtraClientMod {
@@ -62,7 +61,7 @@ public class SodiumExtraClientMod {
                     .addMixinOption("sodium", true)
                     //.addMixinOption("sodium.accessibility", true) in embeddium
                     // .addMixinOption("sodium.fog", true) via api
-                    .addMixinOption("sodium.cloud", EMBEDDIUM_HACKED)
+                    .addMixinOption("sodium.cloud", true)
                     //.addMixinOption("sodium.resolution", true) via api
                     //.addMixinOption("sodium.scrollable_page", true) in embeddium
                     //.addMixinOption("sodium.vsync", true) via api
@@ -115,6 +114,10 @@ public class SodiumExtraClientMod {
 
         RenderSectionDistanceFilterEvent.BUS.addListener(event -> {
             event.setFilter(ExtraRenderSectionDistanceFilter.INSTANCE);
+        });
+
+        ModifyCloudRenderingEvent.BUS.addListener(event -> {
+            event.setCloudRenderDistance(event.getCloudRenderDistance() * SodiumExtraClientMod.options().extraSettings.cloudDistance / 100);
         });
     }
 }

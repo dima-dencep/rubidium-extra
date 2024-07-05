@@ -29,7 +29,7 @@ side = "BOTH"
 [[dependencies.embeddium_extra]]
 modId = "embeddium"
 type = "required"
-versionRange = "[1.0.3+mc1.21,)"
+versionRange = "[1.0.4+mc1.21,)"
 ordering = "NONE"
 side = "CLIENT"
 
