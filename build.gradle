@@ -32,7 +32,7 @@ repositories {
         }
     }
     maven {
-        url = "https://repo.constructlegacy.ru/public"
+        url = "https://repo.redlance.org/public"
     }
     maven {
         url = "https://maven.neoforged.net/releases"
@@ -95,8 +95,8 @@ publishing {
     // select the repositories you want to publish to
     repositories {
         maven {
-            name = "ConstructLegacy"
-            url = "https://repo.constructlegacy.ru/public"
+            name = "Redlance"
+            url = "https://repo.redlance.org/public"
             credentials {
                 username = System.getenv("MAVEN_USERNAME")
                 password = System.getenv("MAVEN_PASSWORD")
